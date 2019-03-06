@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
 
-    private val presenter: MainActivityPresenter? = null
+    private val presenter by inject<MainActivityPresenter>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,14 +17,14 @@ class MainActivity : AppCompatActivity(), MainActivityPresenter.View {
         setContentView(R.layout.activity_main)
 
         btn_click.setOnClickListener {
-            presenter?.onSomething("It's ${Random.nextInt(10)}")
+            presenter.onSomething("It's ${Random.nextInt(10)}")
         }
 
-        presenter?.onCreateView(this)
+        presenter.onCreateView(this)
     }
 
     override fun onDestroy() {
-        presenter?.onDestroyView()
+        presenter.onDestroyView()
         super.onDestroy()
     }
 
