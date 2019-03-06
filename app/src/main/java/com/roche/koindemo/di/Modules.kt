@@ -22,7 +22,8 @@ val networkModule = module {
 }
 
 val viewModule = module {
-    scope<MainActivityPresenter>(SCOPE_ACTIVITY) { MainActivityPresenterImpl(get(), get()) }
+    scope(SCOPE_ACTIVITY) { MainActivityPresenterImpl(get(), get()) } bind MainActivityPresenter::class
+    // ^ `equals scope<MainActivityPresenter>(Scopes.SCOPE_VIEW) { MainActivityPresenterImpl(get(), get()) }`
 }
 
 class Scopes private constructor() {
