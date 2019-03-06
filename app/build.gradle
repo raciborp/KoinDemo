@@ -34,4 +34,5 @@ dependencies {
     // Third party
     // Third party
     implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-android-scope:$koin_version"
 }
